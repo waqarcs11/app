@@ -77,19 +77,8 @@
 		<div class="modal-content form-signin">
 			<div class="modal-body auth-form-inner">
 				<div class="form-group">
-					<p class="logo"><img src="images/diary_logo1.png" /></p>
-				</div>
-				<div class="oauth-buttons">
-					<a class="github-signin" href="javascript:void(0)"> 
-						<i class="fa fa-fw fa-bar-chart-o"></i> Sign In via Facebook 
-					</a> 
-					<a class="bitbucket-signin" href="javascript:void(0)"> 
-						<i class="fa fa-fw fa-bar-chart-o"></i> Sign In via Google 
-					</a>
-				</div>
-				<div class="form-group">
-					<p> --------------------- </p>
-				</div>
+					<p class="logo1"><img src="images/diary_logo1.png" /></p>
+				</div>				
 				<div class="form-group">
 					<p><strong>Please enter your details below</strong></p>
 				</div>
@@ -121,25 +110,37 @@
 	</form>
 	<!-- page 2 of signup, initially this is hidden -->
 	<form id="login-form2" action="" method="post" style = "display:none;">
-		<div class="modal-content form-signin">
+		<div class="modal-content form-signin" style="height:auto;">
 			<div class="modal-body auth-form-inner">
 				<div class="form-group">
-					<p class="logo"><img src="images/diary_logo1.png" /></p>
+					<p class="logo1"><img src="images/diary_logo1.png" /></p>
 				</div>
-				<div class="oauth-buttons"> 
-					<a class="github-signin" href="javascript:void(0)"> 
-						<i class="fa fa-fw fa-bar-chart-o"></i> Sign In via Facebook 
-					</a>
-					<a class="bitbucket-signin" href="javascript:void(0)"> 
-						<i class="fa fa-fw fa-bar-chart-o"></i> Sign In via Google 
-					</a> 
-				</div>
-				<div class="form-group">
-					<p>--------------------------------------------- </p>
-				</div>
+				
 				<div class="form-group">
 					<p><strong>Welcome</strong>, please create a short profile</p>
-				</div>		  
+				</div>
+                
+                <div class="form-group">
+					<input class="form-control" placeholder="Organization Name" name="organization" id="organization" type="text" required autofocus />
+				</div>
+                
+                <div class="form-group">
+					<input class="form-control" placeholder="Address 1 ..." name="address1" id="address1" type="text" required />
+				</div>
+                
+                <div class="form-group">
+					<input class="form-control" placeholder="Address 2 ..." name="address2" id="address2" type="text" />
+				</div>
+                
+                <div class="form-group col-md-6" style="padding-left:0; padding-right:5px;">
+					<input class="form-control" placeholder="City ..." name="city" id="city" type="text" />				
+				</div>
+				<div class="form-group col-md-6" style="padding-left:0; padding-right:0;">
+					<input class="form-control" placeholder="State..." name="state" id="state" type="text" />
+				</div>
+				<div class="clearfix"></div>
+                
+                		  
 				<div class="form-group col-md-6" style="padding-left:0; padding-right:5px;">
 				<select class="form-control" name="country" id="country">
 					<option value="">Select Country</option>
@@ -306,7 +307,7 @@
 					<option value="183">Montserrat</option>
 					<option value="184">Morocco</option>
 					<option value="185">Mozambique</option>
-					<option value="186">Myanmar</option>
+					<option value="186">Myanmar</option> 
 					<option value="187">Namibia</option>
 					<option value="188">Nauru</option>
 					<option value="189">Navassa Island</option>
@@ -412,23 +413,11 @@
 					<input class="form-control" placeholder="Zip or Postal Code..." name="LoginForm[pin]" id="LoginForm_pin" type="text" />
 				</div>
 				<div class="clearfix"></div>
-				<div class="example">
-					<input type="hidden" id="date-of-birth" class="form-control">
-				</div>
+				
 				<div class="form-group">
-					<select class="form-control" name="sex" id="sex">
-						<option value="">Select Sex...</option>
-						<option value="male">Male</option>
-						<option value="female">Female</option>
-					</select>
+					<input class="form-control" placeholder="Tax ID..." name="taxid" id="taxid" type="text" />
 				</div>
-				<div class="form-group">
-					<select class="form-control" name="merital_status" id="merital_status">
-						<option value="">Select marital status...</option>
-						<option value="male">Married</option>
-						<option value="female">Single</option>
-					</select>
-				</div>
+				
 				<div class="form-group">
 					<input type="button" value="BACK" class="btn btn-default js_signup_back">
 					<input type="submit" value="SAVE" class="btn btn-primary">
@@ -455,12 +444,10 @@
 		<div class="modal-content form-signin">
 			<div class="modal-body auth-form-inner">
 				<div class="form-group">
-					<p class="logo"><img src="images/diary_logo1.png" /></p>
+					<p class="logo1"><img src="images/diary_logo1.png" /></p>
 				</div>
 				<i class="icon-ok"></i>
-				<p> You are now signed into the Diary application, your personal passive income tool. </p>
-				<p> Update your diary to win points and then use the points to win prizes. </p>
-				<p> We randomly give away prizes for winning points, and give bonus points for bonus questions </p>
+				<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 				<p style="height:20px;">&nbsp; </p>
 				<div class="form-group">
 					<input type="submit" value="Start Now" class="btn btn-primary js_startnow_button">
