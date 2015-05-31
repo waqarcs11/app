@@ -22,12 +22,12 @@
   
   <!-- Note 
 	- these views will eventually be in separate files loaded in by jQuery 
-	  based on the users locale and device (so devices and./or locales may 
+	  based on the affiliates locale and device (so devices and./or locales may 
 	  end up using different views for same form
 --> 
 
-<!-- user login view -->
-<div id="content_user_login" class="js_content_section">
+<!-- affiliate login view -->
+<div id="content_affiliate_login" class="js_content_section">
 	<form id="login-form" action="" method="post">
 		<div class="modal-content form-signin">
 			<div class="modal-body auth-form-inner">
@@ -64,13 +64,13 @@
 	</form>
 
 </div>
-<!-- end div for class = content_user_login --> 
-<!-- end of user login view --> 
+<!-- end div for class = content_affiliate_login --> 
+<!-- end of affiliate login view --> 
 <!-- --------------------------------------------------------------------------------- --> 
 
 
-<!-- user signup view -->
-<div id="content_user_signup" class="js_content_section"> 
+<!-- affiliate signup view -->
+<div id="content_affiliate_signup" class="js_content_section"> 
 	
 	<!-- page 1 of signup - display this form initially -->
 	<form id="login-form1" action="" method="post">
@@ -430,16 +430,16 @@
 		</div>
 	</form>
 	<div id="signin-links" class="auth-links" style="color:#7A878F" >
-		<div class="auth-links-inner"> <a href="user.php">Already have an account? Sign in here...</a> </div>
+		<div class="auth-links-inner"> <a href="affiliate.php">Already have an account? Sign in here...</a> </div>
 	</div>
 </div>
-<!-- end div for class = content_user_signup --> 
+<!-- end div for class = content_affiliate_signup --> 
  
-<!-- end of user signup view --> 
+<!-- end of affiliate signup view --> 
 <!-- --------------------------------------------------------------------------------- --> 
   
-<!-- user welcome view -->
-<div id="content_user_welcome" class="js_content_section">
+<!-- affiliate welcome view -->
+<div id="content_affiliate_welcome" class="js_content_section">
 	<form id="login-form" action="" method="post">
 		<div class="modal-content form-signin">
 			<div class="modal-body auth-form-inner">
@@ -456,13 +456,13 @@
 		</div>
 	</form>
 </div>
-<!-- end div for class = content_user_welcome --> 
+<!-- end div for class = content_affiliate_welcome --> 
   
-<!-- end of user welcome view --> 
+<!-- end of affiliate welcome view --> 
 <!-- --------------------------------------------------------------------------------- --> 
   
 <!-- event entry view -->
-<div id="content_user_events" class="js_content_section">
+<div id="content_affiliate_events" class="js_content_section">
 	<div class="modal-content form-signin">
 		<div class="row logo_row">
 		
@@ -472,7 +472,7 @@
 						<div role="navigation" style="display: inline-block;">
 							<ul class="nav js-global-actions" id="global-actions">
 								<li id="global-nav-home" style="height:70px;" class="home active" data-global-action="home"> 
-                                	<div class="col-md-2 user_dashboard" style="cursor:pointer;" ><img class="logo" style="margin-left:40px"  src="images/diary_logo1.png" width="20%" /></div> 
+                                	<div class="col-md-2 user_dashboard" style="cursor:pointer;" ><img class="logo" style="margin-left:40px"  src="images/diary_logo1.png" width="20%" /></div>
 								</li>
 								<li class="dm-nav" data-global-action="connect"> 
 									<a data-original-title="" class="js-nav js-tooltip js-dynamic-tooltip" data-placement="bottom" href="#"> <i class="fa fa-user fa-2x newIcon"></i> <span class="text">User: John Doe</span></a>
@@ -495,7 +495,7 @@
 										</span>
 									<div id="typeahead-dropdown-25" role="listbox" class="dropdown-menu typeahead">
 										<div aria-hidden="true" class="dropdown-caret">
-                                            <div class="caret-outer"></div>
+											<div class="caret-outer"></div>
                                             <div class="caret-inner"></div>
 										</div>				   
 									</div>
@@ -1200,8 +1200,8 @@
 -->
 <!-- /container -->
 </div>
-<!-- end div for class = content_user_events --> 
-<!-- end of user events view --> 
+<!-- end div for class = content_affiliate_events --> 
+<!-- end of affiliate events view --> 
 <!-- --------------------------------------------------------------------------------- --> 
   
 </div>
@@ -1218,7 +1218,7 @@ var global_event_name =  "";
 $(function() {
 	$("#date-of-birth").dateDropdowns();
 	$(".js_content_section").hide();
-	$("#content_user_login").show();
+	$("#content_affiliate_login").show();
 	
 	$(document).on('scroll', '#page-scroll', function(){
 		alert(545);
@@ -1235,7 +1235,7 @@ $(function() {
 });
 
 
-// object literal for user functions and views
+// object literal for affiliate functions and views
 	ui_affiliate = {
 		// object variables
 		global_action_value:  [],
@@ -1265,7 +1265,7 @@ $(function() {
 		}, 
 		
 		global_process_logo_click: function() {
-			location.href="user.php";
+			location.href="affiliate.php";
 		},
 		
 		/*-----------------------------------------
@@ -1352,7 +1352,7 @@ $(function() {
 		login_show_view: function() {
 			$(".form-signin").css("max-width", "510px");
 			$(".js_content_section").hide();
-			$("#content_user_login").show();
+			$("#content_affiliate_login").show();
 		},
 
 		/*-----------------------------------------
@@ -1395,7 +1395,7 @@ $(function() {
 			if (v_status == "OK") {
 				//window.location="event_entry.php";
 				$(".js_content_section").hide();
-				$("#content_user_events").show();
+				$("#content_affiliate_events").show();
 				
 				// adjust screen width
 				$(".form-signin").css("max-width", "80%");
@@ -1439,7 +1439,7 @@ $(function() {
 		signup_show_view: function() {
 			
 			$(".js_content_section").hide();
-			$("#content_user_signup").show();
+			$("#content_affiliate_signup").show();
 		},
 		
 		/*-----------------------------------------
@@ -1453,7 +1453,7 @@ $(function() {
 			
 			ui_affiliate.events_add_action(action_type);
 			//$(".js_content_section").hide();
-			//$("#content_user_signup").show();
+			//$("#content_affiliate_signup").show();
 		},
 		
 
@@ -1463,7 +1463,7 @@ $(function() {
 		signup_show_view1: function() {
 			$(".js_content_section").hide();
 
-			$("#content_user_signup").show();
+			$("#content_affiliate_signup").show();
 			$("#login-form1").hide();
 			$("#login-form2").show();
 		},
@@ -1544,7 +1544,7 @@ $(function() {
 			ui_log.log("AUDIT", "ui_affiliate", "seeoffer_show_view1", v_msg);
 		
 			$(".js_content_section").hide();
-			$("#content_user_events").show();
+			$("#content_affiliate_events").show();
 			$("#event_activity").hide();
 
 			var v_status=json_data.status;
@@ -1684,12 +1684,12 @@ console.log("table built -str=" + str);
 		-------------------------------------------*/
 		history_show_view1: function (json_data) {
 		
-					v_msg = "DEBUG: process ajax response with offers history for this user - AJAX data = " + JSON.stringify(json_data);
+					v_msg = "DEBUG: process ajax response with offers history for this affiliate - AJAX data = " + JSON.stringify(json_data);
 					ui_log.log("AUDIT", "ui_affiliate", "seeoffer_show_view1", v_msg);
 					
 					
 					$(".js_content_section").hide();
-					$("#content_user_events").show();
+					$("#content_affiliate_events").show();
 					$("#event_activity").hide();
 
 					var v_status=json_data.status;
@@ -1790,7 +1790,7 @@ console.log("table built -str=" + str);
 			$("#action_type").val("");	
 			$(".js_content_section").hide();
 
-			$("#content_user_events").show();
+			$("#content_affiliate_events").show();
 			$("#event_activity").hide();
 			$("#offer").hide();
 			$("#history").hide();
@@ -1808,7 +1808,7 @@ console.log("table built -str=" + str);
 			$("#action_type").val("");	
 			$(".js_content_section").hide();
 
-			$("#content_user_events").show();
+			$("#content_affiliate_events").show();
 			$("#event_activity").hide();
 			$("#offer").hide();
 			$("#history").hide();
@@ -1830,7 +1830,7 @@ console.log("table built -str=" + str);
 			$("#action_type").val("");	
 			$(".js_content_section").hide();
 
-			$("#content_user_events").show();
+			$("#content_affiliate_events").show();
 			$("#event_activity").hide();
 			$("#offer").hide();
 			$("#history").hide();
@@ -1851,7 +1851,7 @@ console.log("table built -str=" + str);
 			$("#action_type").val("");
 			$(".js_content_section").hide();
 
-			$("#content_user_events").show();
+			$("#content_affiliate_events").show();
 			$("#event_activity").hide();
 			$("#offer").hide();
 			$("#history").hide();
@@ -1871,7 +1871,7 @@ console.log("table built -str=" + str);
 			$("#action_type").val("");
 			$(".js_content_section").hide();
 
-			$("#content_user_events").show();
+			$("#content_affiliate_events").show();
 			$("#event_activity").hide();
 			$("#offer").hide();
 			$("#history").hide();
@@ -1889,7 +1889,7 @@ console.log("table built -str=" + str);
 		signup_show_back: function() {
 			$(".js_content_section").hide();
 
-			$("#content_user_signup").show();
+			$("#content_affiliate_signup").show();
 			$("#login-form2").hide();
 			$("#login-form1").show();
 		},
@@ -1908,7 +1908,7 @@ console.log("table built -str=" + str);
 		-------------------------------------------*/
 		welcome_show_view: function() {
 			$(".js_content_section").hide();
-			$("#content_user_welcome").show();
+			$("#content_affiliate_welcome").show();
 		},
 		
 		load_more: function() {
@@ -1977,7 +1977,7 @@ console.log("table built -str=" + str);
 						e.preventDefault();
 						//window.location="event_entry.php";
 						$(".js_content_section").hide();
-						$("#content_user_events").show();
+						$("#content_affiliate_events").show();
 
 						// adjust screen width
 						$(".form-signin").css("max-width", "80%");

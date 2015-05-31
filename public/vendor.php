@@ -2119,7 +2119,7 @@ var event_count_id = '';
 		about_show_view: function () {
 			
 			$("#campaign_activity").hide();
-			$("#content_select_event").hide();			
+			$("#content_select_event").hide();	
 			$("#content_select_profile").hide();		
 			$("#content_select_adverttype").hide();
 			$("#content_select_campaign").hide();
