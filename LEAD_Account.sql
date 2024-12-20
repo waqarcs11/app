@@ -14,7 +14,7 @@ SELECT
 "LEAD"."AnnualRevenue" As "AnnualRevenue", 
 "LEAD"."LastReferencedDate" As "LastReferencedDate", 
 "OPPORTUNITY"."Type" As "JigsawCompanyId", 
-null AS "SicDesc", 
+"OPPORTUNITY"."Type" As "SicDesc", 
 "Hub1"."IsDeletedh" As "IsDeleted", 
 "OPPORTUNITY"."Name" As "Type", 
 null AS "ParentId", 
