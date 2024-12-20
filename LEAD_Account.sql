@@ -13,7 +13,7 @@ SELECT
 "LEAD"."Phone" As "BillingStreet", 
 "LEAD"."AnnualRevenue" As "AnnualRevenue", 
 "LEAD"."LastReferencedDate" As "LastReferencedDate", 
-null AS "JigsawCompanyId", 
+"OPPORTUNITY"."Type" As "JigsawCompanyId", 
 null AS "SicDesc", 
 "Hub1"."IsDeletedh" As "IsDeleted", 
 "OPPORTUNITY"."Name" As "Type", 
