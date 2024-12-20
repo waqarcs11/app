@@ -3,8 +3,8 @@ null AS "Id",
 null AS "ReplayId", 
 null AS "ChangeEventHeader", 
 null AS "Name", 
-null AS "LastName", 
-null AS "FirstName", 
+"Lead"."LastName" As "LastName", 
+"Lead"."FirstName" As "FirstName", 
 null AS "ParentId", 
 null AS "BillingStreet", 
 null AS "BillingCity", 
@@ -39,4 +39,4 @@ null AS "SicDesc",
 null AS "SFSSDupeCatcher__Override_DupeCatcher__c", 
 null AS "Billing_Email__c", 
 null AS "QB_Id__c"
-FROM datatools_pro
+FROM Lead
