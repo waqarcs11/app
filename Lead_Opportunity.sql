@@ -4,6 +4,8 @@ null AS "IsDeleted",
 null AS "AccountId", 
 null AS "Name", 
 "Lead"."Description" As "Description", 
+CASE
+END AS StageName, 
 null AS "Amount", 
 null AS "Probability", 
 null AS "CloseDate", 
