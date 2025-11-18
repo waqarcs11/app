@@ -561,6 +561,9 @@
 				<li>
 					<a href="javascript:" class="js_friend_button">Friends</a>
 				</li>
+				<li>
+					<a href="javascript:" class="js_release_notes_button">Release Notes</a>
+				</li>
 
 			</ul>
 		</div>
@@ -1219,6 +1222,32 @@
 							
 			</div>
 		</div>
+		<div class="modal-body " id="release_notes" style="display:none">
+			<div class="form-group">
+				
+							<div class="mainbox release-notes-box">
+			
+								<div class="boxhead col-xs-12 col-sm-12">
+									<h5>Release Notes</h5> 
+  
+								</div>
+  
+								<div class="row">
+									<div class="col-sm-12 col-md-12"> 
+										<div class="release-notes-wrapper">
+											<p class="release-notes-intro">Stay up to date with the latest improvements and fixes delivered across the Diary application.</p>
+											<div id="release_notes_loading" class="release-notes-loading">Loading release notes...</div>
+											<div id="release_notes_error_message" class="release-notes-error"></div>
+											<ul class="release-notes-list"></ul>
+										</div>
+									</div>		   
+								</div>	
+  
+							</div>
+							
+							
+			</div>
+		</div>
 	</div>
 <!--
 	<div id="auth-links" class="auth-links" > <a href="user.php" style="color:#7A878F">Go back to home... </a> </div>   
@@ -1322,6 +1351,8 @@ $(function() {
 			$(".js_history_button").on("click", ui_user.history_show_view);
 			
 			$(".js_friend_button").on("click", ui_user.friend_show_view);			
+			
+			$(".js_release_notes_button").on("click", ui_user.release_notes_show_view);
 						
 			$(".js_settings_button").on("click", ui_user.settings_show_view);
 						
@@ -1512,6 +1543,7 @@ $(function() {
 				$("#about").hide();
 				$("#friends").hide();
 				$("#dashboard").hide();
+				$("#release_notes").hide();
 				
 			}
 		},
@@ -1531,7 +1563,8 @@ $(function() {
 			$("#help").hide();
 			$("#about").hide();
 			$("#friends").hide();
-			$("#dashboard").hide();		
+			$("#dashboard").hide();
+			$("#release_notes").hide();		
 		},
 			
 		/*-----------------------------------------
@@ -1651,6 +1684,7 @@ console.log("table built -str=" + str);
 				$("#about").hide();
 				$("#friends").hide();
 				$("#dashboard").hide();
+				$("#release_notes").hide();
 			} 
 			else if(v_status == "FAIL") {
 				$("#offer_error_message").html('<span>Cannot get your offers at this time - please try again later</span>').css('color', 'red');
@@ -1662,6 +1696,7 @@ console.log("table built -str=" + str);
 				$("#about").hide();
 				$("#friends").hide();
 				$("#dashboard").hide();
+				$("#release_notes").hide();
 			}
 		
 		
@@ -1788,6 +1823,7 @@ console.log("table built -str=" + str);
 							$("#about").hide();
 							$("#friends").hide();
 							$("#dashboard").hide();
+							$("#release_notes").hide();
 					} 
 					else if(v_status == "FAIL") {
 							$("#history_error_message").html('<span>Cannot get your offers at this time - please try again later</span>').css('color', 'red');
@@ -1799,6 +1835,7 @@ console.log("table built -str=" + str);
 							$("#about").hide();
 							$("#friends").hide();
 							$("#dashboard").hide();
+							$("#release_notes").hide();
 					}
 					
 			  
@@ -1824,6 +1861,7 @@ console.log("table built -str=" + str);
 			$("#about").hide();
 			$("#friends").hide();
 			$("#dashboard").hide();
+			$("#release_notes").hide();
 		},
 		
 		/*-----------------------------------------
@@ -1842,6 +1880,7 @@ console.log("table built -str=" + str);
 			$("#about").hide();
 			$("#friends").hide();
 			$("#dashboard").show();
+			$("#release_notes").hide();
 		},
 		
 
@@ -1864,6 +1903,93 @@ console.log("table built -str=" + str);
 			$("#about").hide();
 			$("#friends").show();
 			$("#dashboard").hide();
+			$("#release_notes").hide();
+		},
+		
+		/*-----------------------------------------
+		// release_notes_show_view
+		-------------------------------------------*/
+		release_notes_show_view: function () {
+						if(global_event_name != "") {
+							return false;
+						}
+			$("#action_type").val("");	
+			$(".js_content_section").hide();
+
+			$("#content_user_events").show();
+			$("#event_activity").hide();
+			$("#offer").hide();
+			$("#history").hide();
+			$("#settings").hide();
+			$("#help").hide();
+			$("#about").hide();
+			$("#friends").hide();
+			$("#dashboard").hide();
+			$("#event_detail_view").hide();
+			$("#release_notes").show();
+			$("#release_notes_error_message").html("").removeClass("release-notes-error--failure release-notes-error--empty");
+			$(".release-notes-list").html("");
+			$("#release_notes_loading").show();
+			
+			api.do_ajax(
+				"index",
+				"get_release_notes",
+				{ 
+					token: 1
+				}, 
+				ui_user.release_notes_show_view1
+			);
+		},
+		
+		/*-----------------------------------------
+		// release_notes_show_view1
+		-------------------------------------------*/
+		release_notes_show_view1: function (json_data) {
+		
+						v_msg = "DEBUG: process ajax response with release notes - AJAX data = " + JSON.stringify(json_data);
+						ui_log.log("AUDIT", "ui_user", "release_notes_show_view1", v_msg);
+			
+			$("#release_notes_loading").hide();
+			var v_status=json_data.status;
+			if (v_status == "OK" && json_data.notes_data && json_data.notes_data.length) {
+				var html = "";
+				var i, len, j, hlen, k, klen, oneRow, link;
+				for (i = 0, len = json_data.notes_data.length ; i < len; i++) {
+					oneRow = json_data.notes_data[i];
+					html += '<li class="release-note">';
+					html += '<div class="release-note-meta">';
+					html += '<span class="release-version">Version ' + oneRow.version + '</span>';
+					if (oneRow.date) {
+						html += '<span class="release-date">' + oneRow.date + '</span>';
+					}
+					html += '</div>';
+					if (oneRow.summary) {
+						html += '<p class="release-summary">' + oneRow.summary + '</p>';
+					}
+					if (oneRow.highlights && oneRow.highlights.length) {
+						html += '<ul class="release-highlights">';
+						for (j = 0, hlen = oneRow.highlights.length ; j < hlen; j++) {
+							html += '<li>' + oneRow.highlights[j] + '</li>';
+						}
+						html += '</ul>';
+					}
+					if (oneRow.links && oneRow.links.length) {
+						html += '<div class="release-links">';
+						for (k = 0, klen = oneRow.links.length; k < klen; k++) {
+							link = oneRow.links[k];
+							html += '<a href="' + link.url + '" target="_blank" rel="noopener" class="release-link">' + link.label + '</a>';
+						}
+						html += '</div>';
+					}
+					html += '</li>';
+				}
+				$(".release-notes-list").append(html);
+				$("#release_notes_error_message").html("");
+			} else if (v_status == "OK") {
+				$("#release_notes_error_message").html('<span>No release notes are available yet. Check back soon!</span>').removeClass("release-notes-error--failure").addClass("release-notes-error--empty");
+			} else {
+				$("#release_notes_error_message").html('<span>Unable to load release notes right now. Please try again later.</span>').removeClass("release-notes-error--empty").addClass("release-notes-error--failure");
+			}
 		},
 		
 		/*-----------------------------------------
@@ -1885,6 +2011,7 @@ console.log("table built -str=" + str);
 			$("#about").hide();
 			$("#friends").hide();
 			$("#dashboard").hide();
+			$("#release_notes").hide();
 		},
 		/*-----------------------------------------
 		// about_show_view
@@ -1905,6 +2032,7 @@ console.log("table built -str=" + str);
 			$("#about").show();
 			$("#friends").hide();
 			$("#dashboard").hide();
+			$("#release_notes").hide();
 		},
 		
 		
@@ -2031,6 +2159,7 @@ console.log("table built -str=" + str);
 				$("#about").hide();
 				$("#friends").hide();
 				$("#dashboard").hide();
+				$("#release_notes").hide();
 			}, 3000);
 		},
 		
@@ -2158,7 +2287,8 @@ console.log("table built -str=" + str);
 				$("#help").hide();
 				$("#about").hide();
 				$("#friends").hide();
-				$("#dashboard").hide();		
+				$("#dashboard").hide();
+				$("#release_notes").hide();		
 			}
 			
 		},

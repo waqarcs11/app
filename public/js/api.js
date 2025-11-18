@@ -11,6 +11,7 @@ api = {
 	mockup_flags_user_offers:	{ is_success: 1, offer_list: 1 },
 	mockup_flags_user_comments:	{ is_success: 1, comment_list: 1 },
 	mockup_flags_user_offers_history:{ is_success: 1, offer_list: 1 },
+	mockup_flags_release_notes: { is_success: 1, has_notes: 1 },
 	
 	mockup_flags_vendor_login:	{ is_success: 1 }, 
 	
@@ -61,6 +62,9 @@ api = {
 		}        
 		else if (module == "index" && action == "get_history") {
 			return api.mockup_user_offers_history(d01, payload, callback);
+		}
+		else if (module == "index" && action == "get_release_notes") {
+			return api.mockup_release_notes(d01, payload, callback);
 		}
 		
 		// Vendor stuff below
@@ -312,6 +316,97 @@ console.log("PAYLOAD DATA=" + JSON.stringify(payload));
 					}
 					else {
 
+					}
+				}
+				else {
+					response_data = {
+						status: 	"FAIL",
+						errorcode: 	1000,
+						httpcode: 	404
+					}
+				}
+				
+
+				if (callback && typeof(callback) === "function") {
+					// execute the callback
+					callback( response_data );
+				}
+			    
+				return d01;
+			}
+		);
+			
+		return d01;
+	} ,
+
+	/*-----------------------------------------
+	// 
+	-------------------------------------------*/
+	// mockup_release_notes
+	mockup_release_notes: function(d01, payload, callback) {
+
+		// simulate a small delay before resolving promise, as if ajax call completed
+		setTimeout(	d01.resolve,600 );
+			
+			
+		// what to do 
+		$.when(d01).then(
+			function(ajaxArgs) {
+console.log("A3 run callback with fake response object");
+				
+				var response_data;
+				
+				if (api.mockup_flags_release_notes.is_success) {
+				
+					if (api.mockup_flags_release_notes.has_notes) {
+						response_data = {
+							status: 	"OK",
+							notes_data: [
+								{
+									version: "1.4.0",
+									date: "Nov 10, 2025",
+									summary: "Introduced the in-app Release Notes center along with accessibility updates for the dashboard.",
+									highlights: [
+										"New Release Notes view accessible from the navigation bar",
+										"Improved keyboard focus styles inside the dashboard feed",
+										"Faster mock API responses for activity history"
+									],
+									links: [
+										{ label: "Changelog", url: "https://example.com/changelog/1.4.0" }
+									]
+								},
+								{
+									version: "1.3.2",
+									date: "Oct 28, 2025",
+									summary: "Stability fixes for event entry along with refreshed vendor offers data.",
+									highlights: [
+										"Resolved a bug that duplicated events when saving during slow connections",
+										"Added pagination to vendor offers to improve performance",
+										"Updated placeholder avatars across the news feed"
+									],
+									links: [
+										{ label: "Support Article", url: "https://example.com/support/1.3.2" }
+									]
+								},
+								{
+									version: "1.3.0",
+									date: "Oct 10, 2025",
+									summary: "Quality-of-life improvements for sign up and login forms.",
+									highlights: [
+										"Enhanced validation messaging on the registration flow",
+										"Remember-me preference now persists for 30 days",
+										"Polished typography for the welcome experience"
+									],
+									links: []
+								}
+							]
+						}
+					}
+					else {
+						response_data = {
+							status: "OK",
+							notes_data: []
+						}
 					}
 				}
 				else {
